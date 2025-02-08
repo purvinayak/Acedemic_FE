@@ -1,0 +1,21 @@
+.container{
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+}
+.body_main{
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: space-around;
+}
+.sub_row{
+    display: flex;
+    justify-content: space-between;
+
+}
+.but{
+  justify-content: end;
+  padding-left: 100%;
+ 
+    
+}
