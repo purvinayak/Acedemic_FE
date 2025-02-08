@@ -9,6 +9,7 @@ import CourseManagenment from './Pages/Institute/CourseManagenment';
 import BatchManagement from './Pages/Institute/BatchManagement';
 import StudentManagment from './Pages/Institute/StudentManagment';
 import PaymentManagment from './Pages/Institute/PaymentManagment';
+import Commanpageess from './Components/Commanpageess';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Router>
 
       <Navbar />
+      <Commanpageess/>
 
       <Routes>
         <Route path="/" element={<HomePage />} />
