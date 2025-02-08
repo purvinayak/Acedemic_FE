@@ -1,0 +1,117 @@
+/* HomePage.css */
+
+/* Hero Section */
+.home-hero {
+  height: 100vh;
+  width:100vw;
+  position: absolute;
+  background-color: #f5f5f5;
+  padding: 50px 0;
+  text-align: center;
+}
+.home-hero h1 {
+  font-size: 2.5rem;
+  color: #333;
+ 
+}
+
+.home-hero h4 {
+  font-size: 1.2rem;
+  color: #666;
+  margin-top: 10px;
+  max-width: 70%;
+}
+
+/* Hero Section Background */
+.hero-section {
+  position: relative;
+  text-align: center;
+  color: #ede7e7;
+}
+
+.hero-section .MuiTypography-h2 {
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.hero-section .MuiTypography-h5 {
+  font-size: 1.5rem;
+}
+
+/* Buttons in Hero Section */
+.hero-section .MuiButton-containedPrimary {
+  background-color: #1976d2;
+  color: #fff;
+  padding: 10px 30px;
+ 
+}
+
+.hero-section .MuiButton-outlinedSecondary {
+  border-color: #fff;
+  color: #fff;
+  padding: 10px 30px;
+  
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.hero-section .MuiButton-outlinedSecondary:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Modal styling */
+.modal-content {
+  position:fixed;
+  top: 50%;
+ 
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+}
+
+.modal-content h5 {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.modal-content .MuiButton-containedPrimary {
+  background-color: #1976d2;
+  color: #fff;
+  width: 100px;
+  margin-top: 20px;
+}
+
+/* Features Section */
+.features-section {
+  background-color: #fafafa;
+  padding: 40px 0;
+}
+
+.features-section h4 {
+  color: #333;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.MuiCard-root {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.MuiCardContent-root {
+  text-align: center;
+}
+
+.MuiTypography-h6 {
+  font-size: 1.2rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.MuiTypography-body1 {
+  color: #666;
+}
