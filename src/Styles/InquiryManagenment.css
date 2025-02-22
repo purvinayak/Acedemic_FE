@@ -1,0 +1,10 @@
+.mainContain{
+  
+    background-image: url(https://images.pexels.com/photos/8015684/pexels-photo-8015684.jpeg?auto=compress&cs=tinysrgb&w=600);
+      background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Full viewport height */
+  display: flex;
+  flex-direction: column;
+}

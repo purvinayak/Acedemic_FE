@@ -9,8 +9,7 @@ import CourseManagenment from './Pages/Institute/CourseManagenment';
 import BatchManagement from './Pages/Institute/BatchManagement';
 import StudentManagment from './Pages/Institute/StudentManagment';
 import PaymentManagment from './Pages/Institute/PaymentManagment';
-
-
+import InquiryManagenment from './Pages/Institute/InquiryManagenment';
 
 function App() {
   return (
@@ -33,6 +32,7 @@ function App() {
         <Route path="/Institute/BatchManagement" element={<BatchManagement />} />
         <Route path="/Institute/StudentManagment" element={<StudentManagment />} />
         <Route path="/Institute/PaymentManagment" element={<PaymentManagment />} />
+        <Route path="/Institute/InquiryManagenment" element={<InquiryManagenment/>} />
 
       </Routes>
     </Router>
