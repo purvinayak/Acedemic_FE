@@ -107,56 +107,7 @@
 
 // export default CommanTable;
 
-// import React from 'react';
-// import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-// import '../Styles/Commantable.css'
 
-// const CustomTable = ({ tableHeaders, tabledata, onEdit, onDelete }) => {
-//   return (
-//     <TableContainer component={Paper}>
-//       <Table aria-label="custom table with headers and actions" className='container'>
-//         <TableHead className='header_main'>
-//           <TableRow>
-//             {tableHeaders.map((header, index) => (
-//               <TableCell key={index}>{header}</TableCell>
-//             ))}
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {tabledata.map((row, rowIndex) => (
-//             <TableRow key={rowIndex}>
-//               {Object.keys(row).map((key, cellIndex) => (
-//                 <TableCell key={cellIndex} className='sub_row'>{row[key]}</TableCell>
-//               ))}
-//               <TableCell className='sub_row'>
-//                 <Button
-//                   className='but'
-//                   variant="contained"
-//                   color="primary"
-//                   size="small"
-//                   onClick={() => onEdit(row)}
-//                 >
-//                   Edit
-//                 </Button>
-//                 <Button
-//                   className='but'
-//                   variant="contained"
-//                   color="secondary"
-//                   size="small"
-//                   onClick={() => onDelete(row)}
-//                 >
-//                   Delete
-//                 </Button>
-//               </TableCell>
-//             </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//     </TableContainer>
-//   );
-// };
-
-// export default CustomTable;
 
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';

@@ -1,53 +1,95 @@
-import React, { useState } from 'react';
-import { Paper, InputBase, Divider, IconButton, Button, Grid } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import CommanTable from '../../Components/CommanTable';
-import CommanFormdialog from '../../Components/CommanFormdialog';
-//import '../../Styles/StudentManagment.css';
+import React, { useState, useEffect } from "react";
+import { Paper, InputBase, Divider, IconButton, Button, Grid } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import CommanTable from "../../Components/CommanTable";
+import CommanFormdialog from "../../Components/CommanFormdialog";
+import axios from "axios";
 
-const  StudentManagment = () => {
+const tableHeaders = ["Student ID", "Batch", "Student Name", "Mobile No", "Email", "Course", "Duration", "Decided Fees", "Action"];
+
+const fields = [
+  { label: "Student ID", name: "StudentID", type: "text" },
+  { label: "Batch", name: "Batch", type: "text" },
+  { label: "Student Name", name: "StudentName", type: "text" },
+  { label: "Mobile No", name: "MobileNo", type: "text" },
+  { label: "Email", name: "Email", type: "email" },
+  { label: "Course", name: "Course", type: "text" },
+  { label: "Duration", name: "Duration", type: "text" },
+  { label: "Decided Fees", name: "DecidedFees", type: "number" },
+];
+
+const StudentManagement = () => {
   const [open, setOpen] = useState(false);
-  const [formData, setFormData] = useState({});
-  
-  const tableHeaders = ["StudentID", "Batch", "StudentName","MobileNo","Email","Course","Duration","Decided Fees","Action"];
-  const tabledata = [
-     {StudentID:"101",Batch:"A",StudentName:"Nisha",MobileNo:"942557878",Email:"n@gmail.com",Course:"node",Duration:"3 month",DecidedFees:"15500"},
-     {StudentID:"101",Batch:"A",StudentName:"Nisha",MobileNo:"942557878",Email:"n@gmail.com",Course:"node",Duration:"3 month",DecidedFees:"15500"}
-  ];
+  const [formData, setFormData] = useState({
+    StudentID: "",
+    Batch: "",
+    StudentName: "",
+    MobileNo: "",
+    Email: "",
+    Course: "",
+    Duration: "",
+    DecidedFees: "",
+  });
+  const [tableData, setTableData] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editingId, setEditingId] = useState(null);
 
-  const fields = [
-    { label: "StudentID", name: "studentID", required: true },
-    { label: "Batch", name: "batch", required: true },
-    { label: "StudentName", name: "studentName", required: true },
-    { label: "MobileNo", name: "mobileNo", required: true },
-    { label: "Email", name: "Email", required: true },
-    { label: "Course", name: "Course", required: true },
-    { label: "Duration", name: "duration", type: "number", required: true },
-    { label: "Decided Fees", name: "decided_fees", required: true },
-  ];
+  useEffect(() => {
+    fetchTableData();
+  }, []);
 
-  const handleEdit = (row) => {
-    setFormData(row);
-    setOpen(true);
-    
+  const fetchTableData = async () => {
+    try {
+      const response = await axios.get("http://localhost:9000/institute/getStudent");
+      setTableData(response.data.data);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
   };
 
-  const handleDelete = (row) => {
-    console.log("Delete", row);
+  const handleClickOpen = () => setOpen(true);
+  const handleClose = () => {
+    setOpen(false);
+    setFormData({ StudentID: "", Batch: "", StudentName: "", MobileNo: "", Email: "", Course: "", Duration: "", DecidedFees: "" });
+    setEditMode(false);
+    setEditingId(null);
   };
-
-  const handleClose = () => setOpen(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(Data => ({ ...Data, [name]: value }));
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
- 
-    console.log("Form Data:", formData);
-    handleClose();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (editMode) {
+        await axios.put(`http://localhost:9000/institute/updateStudent?id=${editingId}`, formData);
+      } else {
+        await axios.post("http://localhost:9000/institute/postStudent", formData);
+      }
+      fetchTableData();
+      handleClose();
+    } catch (err) {
+      console.error("Error saving data:", err);
+    }
+  };
+
+  const handleEdit = (rowData) => {
+    setFormData(rowData);
+    setEditingId(rowData._id);
+    setEditMode(true);
+    setOpen(true);
+  };
+
+  const handleDelete = async (rowData) => {
+    try {
+      await axios.delete(`http://localhost:9000/institute/deleteStudent?id=${rowData._id}`);
+      fetchTableData();
+    } catch (err) {
+      console.error("Error deleting data:", err);
+    }
   };
 
   return (
@@ -55,18 +97,18 @@ const  StudentManagment = () => {
       <div className="add-icon-container">
         <Grid container spacing={2}>
           <Grid item xs={2}>
-            <Button color="primary" variant="contained" aria-label="add" onClick={() => setOpen(true)}>
-              <AddCircleIcon />
+            <Button variant="contained" color="primary" startIcon={<AddCircleIcon />} onClick={handleClickOpen}>
+              Add Student
             </Button>
           </Grid>
-          <Grid item xs={7} style={{ display: 'flex', justifyContent: 'center' }}>
-            <h1 className="institute-manage-title">Student Management</h1>
+          <Grid item xs={7} style={{ display: "flex", justifyContent: "center" }}>
+            <h1>Student Management</h1>
           </Grid>
           <Grid item xs={3}>
-            <Paper component="form" sx={{ display: 'flex', alignItems: 'center', width: 400 }}>
+            <Paper component="form" sx={{ display: "flex", alignItems: "center", width: 400 }}>
               <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search Student Name" />
               <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-              <IconButton color="primary" sx={{ p: '1px' }} aria-label="search">
+              <IconButton color="primary" sx={{ p: "10px" }}>
                 <SearchIcon />
               </IconButton>
             </Paper>
@@ -76,20 +118,36 @@ const  StudentManagment = () => {
 
       <CommanTable
         tableHeaders={tableHeaders}
-        tabledata={tabledata}
-        onEdit={handleEdit}
-        onDelete={handleDelete}
-        
+        tabledata={tableData.map((item) => ({
+          ID: item._id,
+          studentID: item.StudentID,
+          batch: item.Batch,
+          studentName: item.StudentName,
+          mobileNo: item.MobileNo,
+          email: item.Email,
+          course: item.Course,
+          duration: item.DecidedFeesuration,
+          decidedFees: item.DecidedFees,
+          action: (
+            <>
+              <Button variant="contained" color="primary" onClick={() => handleEdit(item)}>Edit</Button>
+              <Button variant="contained" color="secondary" onClick={() => handleDelete(item)}>Delete</Button>
+            </>
+          ),
+        }))}
       />
+
       <CommanFormdialog
         open={open}
         onClose={handleClose}
         onSubmit={handleSubmit}
         fields={fields}
-       
         onChange={handleChange}
+        formData={formData}
+        editMode={editMode}
       />
     </div>
   );
-}
-export default StudentManagment;
+};
+
+export default StudentManagement;

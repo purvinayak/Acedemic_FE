@@ -11,11 +11,8 @@
 .sub_row{
     display: flex;
     justify-content: space-between;
-
 }
 .but{
   justify-content: end;
   padding-left: 100%;
- 
-    
 }

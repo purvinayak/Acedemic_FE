@@ -1,12 +1,11 @@
-.mainContain{
-  
-    background-image: url();
-      background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 100vh; /* Full viewport height */
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
+.action-column {
+  width: 150px;
+  text-align: center;
+}
 
+/* Align buttons in the Action column */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
 }
