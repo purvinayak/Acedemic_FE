@@ -40,7 +40,7 @@
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Grid } from '@mui/material';
 
-const CommanFormdialog = ({ open, onClose, onSubmit, fields, onChange, formData, editMode }) => {
+const CommanFormdialog = ({ open, onClose, onSubmit, fields, onChange, formData, editMode, disableFields = [], }) => {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Batch Details</DialogTitle>
@@ -57,6 +57,7 @@ const CommanFormdialog = ({ open, onClose, onSubmit, fields, onChange, formData,
                 fullWidth
                 required={field.required || false}
                 sx={{ backgroundColor: '#fff' }}
+                disabled={disableFields.includes(field.name)} //
               />
             </Grid>
           ))}
