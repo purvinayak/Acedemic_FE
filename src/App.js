@@ -10,6 +10,8 @@ import BatchManagement from './Pages/Institute/BatchManagement';
 import StudentManagment from './Pages/Institute/StudentManagment';
 import PaymentManagment from './Pages/Institute/PaymentManagement';
 import InquiryManagenment from './Pages/Institute/InquiryManagenment';
+//import AdminDashboard from './Dashboard/adminDashboed';
+import Dashboard from './Pages/Institute/Dashboard';
 
 function App() {
   return (
@@ -20,11 +22,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/Admin/AdminDashboed" element={<InstituteLogin />} />
+        {/* <Route path="/Admin/AdminDashboed" element={<AdminDashboard/>} /> */}
         <Route path="/Admin/AdminLogin" element={<AdminLogin/>} />
         <Route path="/Admin/InstituteManage" element={<InstituteManage/>} />
         <Route path="/Institute/InstituteLogin" element={<InstituteLogin />} />
         <Route path="/Institute/InstituteRegistration" element={<InstituteRegistration />} />
+        <Route path="/Institute/Dashboard" element={<Dashboard/>} />
         <Route path="/Institute/CourseManagenment" element={<CourseManagenment />} />
         <Route path="/Institute/BatchManagement" element={<BatchManagement />} />
         <Route path="/Institute/StudentManagment" element={<StudentManagment />} />
