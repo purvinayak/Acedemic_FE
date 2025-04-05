@@ -298,7 +298,7 @@ const PaymentManagement = () => {
   };
 
   const tableHeaders = [
-    'Student Name', 'Mobile No', 'RecievedFees', 'RemainingFees','Current Fees', 'Action'
+    'Student Name', 'Mobile No', 'RecievedFees', 'RemainingFees', 'Action'
   ];
 
   const fields = [
@@ -306,10 +306,8 @@ const PaymentManagement = () => {
     { label: 'Mobile No', name: 'MobileNo', required: true },
     { label: 'RecievedFees', name: 'RecievedFees', type: 'number', required: true },
     { label: ' RemainingFees', name: 'RemainingFees', type: 'number', required: true },
-    { label: 'Current Fees', name: 'CurrentFees', type: 'number', required: true }
+ 
   ];
-
-
 
   const handleClickOpen = (rowData) => {
     setFormData(rowData);
@@ -403,7 +401,7 @@ const PaymentManagement = () => {
           mobileNo: item.MobileNo,
           RecievedFees: item.RecievedFees,
           RemainingFees: item.RemainingFees,
-          CurrentFees: item.CurrentFees,
+       
           action: (
             <>
               <Button variant="contained" color="primary" onClick={() => handleClickOpen(item)}>Add Payment</Button>

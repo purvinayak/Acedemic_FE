@@ -2,10 +2,10 @@ import * as React from 'react';
 import { AppProvider, SignInPage } from '@toolpad/core';
 import { useTheme } from '@mui/material/styles';
 
-// preview-start
+
 const providers = [{ id: 'credentials', name: 'Email and Password' }];
 
-// preview-end
+
 
 const signIn = async (provider, formData) => {
     console.log(provider)

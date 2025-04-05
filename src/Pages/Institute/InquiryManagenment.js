@@ -113,10 +113,10 @@ import CommanTable from "../../Components/CommanTable";
 import CommanFormdialog from "../../Components/CommanFormdialog";
 import axios from "axios";
 
-const tableHeaders = ["Inquiry ID", "Student Name", "Mobile No", "Email", "Course", "Action"];
+const tableHeaders = [ "Student Name", "Mobile No", "Email", "Course", "Action"];
 
 const fields = [
-  { label: "Inquiry ID", name: "InquiryID", type: "text" },
+
   { label: "Student Name", name: "StudentName", type: "text" },
   { label: "Mobile No", name: "MobileNo", type: "text" },
   { label: "Email", name: "Email", type: "email" },
@@ -146,7 +146,7 @@ const InquiryManagement = () => {
   const handleClickOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    setFormData({ InquiryID: "", StudentName: "", MobileNo: "", Email: "", Course: "" });
+    setFormData({  StudentName: "", MobileNo: "", Email: "", Course: "" });
     setEditMode(false);
     setEditingId(null);
   };
@@ -164,8 +164,10 @@ const InquiryManagement = () => {
       } 
       else {
         await axios.post("http://localhost:9000/institute/postInquiry", formData);
+
       }
       fetchTableData();
+      alert("Data saved successfully");
       handleClose();
     } catch (err) {
       console.error("Error saving data:", err);
@@ -183,6 +185,7 @@ const InquiryManagement = () => {
     try {
       await axios.delete(`http://localhost:9000/institute/deleteInquiry?id=${rowData._id}`);
       fetchTableData();
+      alert("Deleted successfully");
     } catch (err) {
       console.error("Error deleting data:", err);
     }
@@ -215,15 +218,15 @@ const InquiryManagement = () => {
       <CommanTable
         tableHeaders={tableHeaders}
         tabledata={tableData.map((item) => ({
-          ID: item._id,
-          inquiryID: item.InquiryID,
+        
+        
           studentName: item.StudentName,
           mobileNo: item.MobileNo,
           email: item.Email,
           course: item.Course,
           action: (
             <>
-              <Button variant="contained" color="primary" onClick={() => handleEdit(item)}>Edit</Button>
+
               <Button variant="contained" color="secondary" onClick={() => handleDelete(item)}>Delete</Button>
             </>
           ),
